@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
+body {
+  background: #335c74;
+  font-family: "Varela Round", sans-serif;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.container {
+  width: 380px;
+  background: #fff;
+  margin: 50px auto;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  max-width: 400px;
+  margin-top: 20px;
+}
+
+.card {
+  width: 75px;
+  height: 75px;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  font-weight: bold;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  background: #fff;
+  transform: rotateY(180deg);
+  color: #419bcf;
+}
+
+.card-back {
+  background: #419bcf;
+}
+
+#gameOverContainer {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#gameOverContainer.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+#timer {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+#restart {
+  all: unset;
+  background: #419bcf;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}

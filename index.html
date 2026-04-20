@@ -3,128 +3,238 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="icon" href="Images/icon card.png" type="image/x-icon" />
-    <link rel="stylesheet" href="style.css" />
-
     <title>Memory Card Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <h1 class="text-center">Memory Card Game</h1>
-
-      <div class="settings">
-        <div class="setting">
-          <label>Username</label>
-          <input type="text" id="username" placeholder="Enter your name" />
+    <div class="app">
+      <div class="card-container">
+        <div class="header">
+          <div class="header-top">
+            <div class="title-block">
+              <div class="game-title">Memory</div>
+              <div class="game-subtitle">Find all matching pairs to win</div>
+            </div>
+            <div class="timer-badge timer-hidden" id="timerBadge">
+              <svg
+                class="timer-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="rgba(255,255,255,0.85)"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3 3" />
+              </svg>
+              <span id="timerDisplay">00:00</span>
+            </div>
+          </div>
         </div>
 
-        <div class="setting">
-          <label>Max Retries</label>
-          <input type="number" id="maxRetries" min="1" value="10" />
-        </div>
+        <div class="body">
+          <div class="settings-panel" id="settingsPanel">
+            <div class="settings-title">Setup</div>
 
-        <div class="setting row">
-          <label>
-            <input type="checkbox" id="toggleTimer" checked />
-            Timer
-          </label>
+            <div class="setting-row" id="usernameRow">
+              <label class="setting-label" for="usernameInput">Your Name</label>
+              <input
+                class="setting-input"
+                type="text"
+                id="usernameInput"
+                placeholder="Enter your name to start…"
+                maxlength="24"
+                autocomplete="off"
+              />
+            </div>
 
-          <input
-            type="number"
-            id="timerDuration"
-            value="60"
-            min="10"
-            class="timer-input"
-          />
-          <h3 class="text-center mb-4" id="timer">Time 1:00</h3>
-        </div>
+            <div id="usernameHint" class="username-hint">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v4M12 16h.01" />
+              </svg>
+              Enter your name above to unlock the game board
+            </div>
 
-        <div class="stats">
-          <p id="moves">Moves: 0</p>
-          <p id="mistakes">Mistakes: 0</p>
-          <p id="misses">Misses: 0</p>
-        </div>
+            <div class="setting-row">
+              <label class="setting-label" for="retriesInput"
+                >Max Retries</label
+              >
+              <input
+                class="setting-input"
+                type="number"
+                id="retriesInput"
+                value="5"
+                min="1"
+                max="20"
+              />
+            </div>
 
-        <button class="hintBtn" onclick="GameUI.useHint()">Show Cards</button>
-      </div>
+            <div class="setting-row toggle-row">
+              <div class="toggle-label-wrap">
+                <span class="setting-label" style="margin-bottom: 0"
+                  >Play with Timer</span
+                >
+                <span class="toggle-desc">Count down from set duration</span>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="timerToggle" />
+                <span class="toggle-track"></span>
+              </label>
+            </div>
 
-      <div class="wrapper" id="wrapper">
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-        <div class="card">
-          <div class="card-front"></div>
-          <div class="card-back"></div>
-        </div>
-      </div>
+            <div class="timer-duration-row" id="timerDurationRow">
+              <div class="setting-row">
+                <label class="setting-label" for="timerDurationInput"
+                  >Timer Duration (seconds)</label
+                >
+                <input
+                  class="setting-input"
+                  type="number"
+                  id="timerDurationInput"
+                  value="120"
+                  min="10"
+                  max="600"
+                />
+              </div>
+            </div>
+          </div>
 
-      <div
-        class="d-flex flex-column justify-content-center align-items-center position-absolute w-100 h-100"
-        id="gameOverContainer"
-      >
-        <h2 class="gameOver"></h2>
-        <button class="btn btn-primary mt-4" id="restart">Play Again</button>
+          <div class="stats-bar">
+            <div class="stat-card moves-card" id="movesCard">
+              <svg
+                class="stat-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#419bcf"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+              <span class="stat-value" id="movesVal">0</span>
+              <span class="stat-label">Moves</span>
+            </div>
+            <div class="stat-card mistakes-card" id="mistakesCard">
+              <svg
+                class="stat-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#f59e0b"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+                />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <span class="stat-value" id="mistakesVal">0</span>
+              <span class="stat-label">Mistakes</span>
+            </div>
+            <div class="stat-card misses-card" id="missesCard">
+              <svg
+                class="stat-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#ef4444"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+              <span class="stat-value" id="missesVal">0</span>
+              <span class="stat-label">Misses</span>
+            </div>
+          </div>
+
+          <div class="board-header">
+            <span class="board-label" id="boardLabel">4 × 4 Board</span>
+            <div class="retry-pip-wrap" id="retryPips"></div>
+          </div>
+
+          <div class="game-board" id="gameBoard"></div>
+
+          <div class="action-bar">
+            <button class="btn-hint" id="hintBtn" disabled>
+              <svg
+                class="hint-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              Show Cards
+              <span class="hint-cooldown" id="hintCooldownText"></span>
+            </button>
+            <button class="btn-restart" id="restartBtn" title="Restart game">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                <path d="M3 3v5h5" />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <script src="main.js"></script>
+    <div class="overlay" id="overlay">
+      <div class="overlay-backdrop" id="overlayBackdrop"></div>
+
+      <div class="overlay-card">
+        <span class="overlay-emoji" id="overlayEmoji">🏆</span>
+        <div class="overlay-title win" id="overlayTitle">You Won!</div>
+        <div class="overlay-msg" id="overlayMsg">
+          Fantastic memory! All pairs matched.
+        </div>
+        <div class="overlay-stats">
+          <div class="ov-stat">
+            <span class="ov-stat-val" id="ovMoves">—</span>
+            <span class="ov-stat-lbl">Moves</span>
+          </div>
+          <div class="ov-stat">
+            <span class="ov-stat-val" id="ovMistakes">—</span>
+            <span class="ov-stat-lbl">Mistakes</span>
+          </div>
+          <div class="ov-stat">
+            <span class="ov-stat-val" id="ovTime">—</span>
+            <span class="ov-stat-lbl">Time</span>
+          </div>
+        </div>
+        <button class="btn-play-again" id="playAgainBtn">Play Again</button>
+      </div>
+    </div>
+
+    <script src="main.js" defer></script>
   </body>
 </html>

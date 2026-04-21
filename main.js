@@ -74,7 +74,6 @@ const Utils = {
   },
 };
 
-//Username gate
 el.usernameInput.addEventListener("input", () => {
   const hasName = el.usernameInput.value.trim().length > 0;
   el.usernameHint.classList.toggle("hidden", hasName);
@@ -91,7 +90,6 @@ el.usernameInput.addEventListener("input", () => {
   }
 });
 
-// Timer toggle
 el.timerToggle.addEventListener("change", () => {
   const on = el.timerToggle.checked;
   el.timerDurationRow.classList.toggle("visible", on);
@@ -102,7 +100,6 @@ el.timerToggle.addEventListener("change", () => {
   }
 });
 
-// Build board
 function buildPips() {
   el.retryPips.innerHTML = "";
   for (let i = 0; i < state.maxRetries; i++) {
@@ -126,6 +123,7 @@ function initGame() {
   state.misses = 0;
   state.matched = 0;
   state.flipped = [];
+
   state.locked = false;
   state.gameActive = true;
   state.hintActive = false;
@@ -137,12 +135,11 @@ function initGame() {
 
   el.hintBtn.disabled = false;
   el.hintBtn.querySelector("span").textContent = "";
-  el.boardLabel.textContent = username + "'s Board";
 
-  // Card values: 8 pairs → 16 cards
   const values = Utils.shuffle([
     1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8,
   ]);
+
   state.cards = values.map((v, i) => ({
     id: i,
     value: v,
@@ -198,7 +195,6 @@ function onCardClick(id) {
   if (c.matched || c.flipped) return;
   if (state.flipped.length >= 2) return;
 
-  // Flip it
   c.flipped = true;
   state.flipped.push(id);
   getCardEl(id).classList.add("flipped");
@@ -263,7 +259,6 @@ function checkMatch() {
   }
 }
 
-//Timer
 const Timer = {
   start() {
     clearInterval(state.timerInterval);
@@ -302,9 +297,7 @@ const Timer = {
   },
 };
 
-//Hint
 el.hintBtn.addEventListener("click", () => Hint.use());
-
 const Hint = {
   timer: null,
   seconds: 0,
@@ -334,7 +327,7 @@ const Hint = {
       state.locked = false;
       state.hintActive = false;
 
-      this.cooldown(8);
+      this.cooldown(20);
     }, 1200);
   },
 
@@ -359,7 +352,6 @@ const Hint = {
   },
 };
 
-//Restart
 el.restartBtn.addEventListener("click", () => {
   clearInterval(Hint.timer);
   el.hintCooldownText.textContent = "";
@@ -368,13 +360,11 @@ el.restartBtn.addEventListener("click", () => {
     initGame();
   }
 });
-
 el.playAgainBtn.addEventListener("click", () => {
   el.overlay.classList.remove("active");
   setTimeout(initGame, 150);
 });
 
-// End game
 function endGame(won, reason) {
   state.gameActive = false;
   state.locked = true;
@@ -411,11 +401,9 @@ function endGame(won, reason) {
   setTimeout(() => el.overlay.classList.add("active"), won ? 600 : 300);
 }
 
-//Init on load
 usernameHint.classList.remove("hidden");
 el.hintBtn.disabled = true;
 
-// Build empty board for preview
 const previewVals = Utils.shuffle([
   1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8,
 ]);

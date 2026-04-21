@@ -42,46 +42,6 @@
           <div class="settings-panel" id="settingsPanel">
             <div class="settings-title">Setup</div>
 
-            <div class="setting-row" id="usernameRow">
-              <label class="setting-label" for="usernameInput">Your Name</label>
-              <input
-                class="setting-input"
-                type="text"
-                id="usernameInput"
-                placeholder="Enter your name to start…"
-                maxlength="24"
-                autocomplete="off"
-              />
-            </div>
-
-            <div id="usernameHint" class="username-hint">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 8v4M12 16h.01" />
-              </svg>
-              Enter your name above to unlock the game board
-            </div>
-
-            <div class="setting-row">
-              <label class="setting-label" for="retriesInput"
-                >Max Retries</label
-              >
-              <input
-                class="setting-input"
-                type="number"
-                id="retriesInput"
-                value="5"
-                min="1"
-                max="20"
-              />
-            </div>
-
             <div class="setting-row toggle-row">
               <div class="toggle-label-wrap">
                 <span class="setting-label" style="margin-bottom: 0"
@@ -109,6 +69,45 @@
                   max="600"
                 />
               </div>
+            </div>
+
+            <div class="setting-row">
+              <label class="setting-label" for="retriesInput"
+                >Max Retries</label
+              >
+              <input
+                class="setting-input"
+                type="number"
+                id="retriesInput"
+                value="5"
+                min="1"
+                max="20"
+              />
+            </div>
+
+            <div class="setting-row" id="usernameRow">
+              <label class="setting-label" for="usernameInput">Your Name</label>
+              <input
+                class="setting-input"
+                type="text"
+                id="usernameInput"
+                placeholder="Enter your name to start…"
+                maxlength="24"
+                autocomplete="off"
+              />
+            </div>
+            <div id="usernameHint" class="username-hint">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v4M12 16h.01" />
+              </svg>
+              Enter your name above to unlock the game board
             </div>
           </div>
 
@@ -166,7 +165,7 @@
           </div>
 
           <div class="board-header">
-            <span class="board-label" id="boardLabel">4 × 4 Board</span>
+            <span class="board-label" id="boardLabel">Board</span>
             <div class="retry-pip-wrap" id="retryPips"></div>
           </div>
 
